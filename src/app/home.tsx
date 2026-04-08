@@ -6,6 +6,7 @@ import { TitleBar } from "@/components/TitleBar";
 export default function Home() {
   const mockMovies = [1, 2, 3, 4, 5];
 
+
   return (
     <View style={style.background}>
       <ScrollView 
