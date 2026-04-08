@@ -5,6 +5,8 @@ import { Image, View, Text, TouchableOpacity } from "react-native";
 import { Link, useRouter } from 'expo-router';
 import {ButtonY} from "@/components/ButtonY";
 import {ButtonB} from "@/components/ButtonB";
+import { Dimensions } from "react-native";
+const { height } = Dimensions.get('window');
 
 export default function Index(){
     const router = useRouter();
@@ -27,7 +29,9 @@ export default function Index(){
                             </TouchableOpacity>
                         </Link>
                         <ButtonY title="Entrar" onPress={() => router.push('/home')} />
-                        <Text style={style.message}>Ainda não possui uma conta?</Text>
+                        <View style={{ marginTop: height * 0.025, marginBottom: height * 0.001, width: '100%' }}>
+                            <Text style={style.message}>Ainda não possui uma conta?</Text>
+                        </View>
                         <ButtonB title="Cadastre-se" onPress={() => router.push('/register')} />
                     </View>
                 </Box>

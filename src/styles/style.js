@@ -99,7 +99,7 @@ export const style = StyleSheet.create({
   },
   button: {
     borderRadius: height * 0.03,
-    height: height * 0.06,
+    height: height * 0.07,
     justifyContent: "center",
     alignItems: "center",
     alignSelf: "center",
