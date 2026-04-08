@@ -11,7 +11,6 @@ export const style = StyleSheet.create({
     backgroundColor: "#B22300",
     alignItems: "center",
     justifyContent: "flex-start",
-    paddingTop: height * 0.05,
   },
   center: {
     alignItems: "center",
@@ -37,13 +36,13 @@ export const style = StyleSheet.create({
     paddingBottom: 20,
   },
   logoS: {
-    marginTop: height * 0.0,
+    marginTop: height * 0.01,
     marginBottom: height * 0.01,
     height: height * 0.1,
     resizeMode: "contain",
   },
   logoB: {
-    marginTop: height * 0.05,
+    marginTop: height * 0.1,
     marginBottom: height * 0.05,
     height: height * 0.23,
     resizeMode: "contain",
@@ -66,7 +65,7 @@ export const style = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "white",
-    borderRadius: 50,
+    borderRadius: height*0.03,
     paddingHorizontal: 15,
     height: height * 0.06,
     width: "90%",
@@ -99,7 +98,7 @@ export const style = StyleSheet.create({
     textDecorationLine: "underline",
   },
   button: {
-    borderRadius: 50,
+    borderRadius: height * 0.03,
     height: height * 0.06,
     justifyContent: "center",
     alignItems: "center",
@@ -146,7 +145,7 @@ export const style = StyleSheet.create({
     textAlign: "center",
   },
   buttonGenre: {
-    borderRadius: 100,
+    borderRadius: height * 0.06,
     paddingHorizontal: height * 0.02,
     paddingVertical: height * 0.01,
     marginVertical: height * 0.01,
