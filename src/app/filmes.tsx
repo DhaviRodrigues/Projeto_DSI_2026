@@ -7,7 +7,6 @@ import BottomNavbar from '@/components/Navbar';
 import { ButtonY } from '@/components/ButtonY';
 import { Input } from '@/components/Input';
 
-
 function DynamicStars({ rating }: { rating: string }) {
   const numRating = parseFloat(rating.replace(',', '.'));
 
