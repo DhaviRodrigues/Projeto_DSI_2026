@@ -18,7 +18,7 @@ export function ButtonY({ title, h, w, textSize, align, borderRadius, onPress }:
       activeOpacity={0.7} 
       onPress={onPress}
     >
-      <Text style={[style.buttonText, style.buttonYText]}>{title}</Text>
+      <Text style={[style.buttonText, style.buttonYText, { fontSize: textSize }]}>{title}</Text>
     </TouchableOpacity>
   );
 }
