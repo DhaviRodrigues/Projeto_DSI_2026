@@ -1,6 +1,6 @@
 import { useRouter } from "expo-router";
 import React from "react";
-import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from "react-native";
 import { style } from "../styles/style";
 
 import { Box } from "../components/Box";
@@ -8,14 +8,15 @@ import { ButtonVoltar } from "../components/ButtonVoltar";
 import { ButtonY } from "../components/ButtonY";
 import CodeInput from "../components/CodeInput";
 
-const { height, width } = Dimensions.get("window");
-
 export default function Verify2FA() {
   const router = useRouter();
+  
+  const { width, height } = useWindowDimensions();
+
+  const styles = getStyles(width, height);
 
   return (
     <View style={style.background}>
-
       <Image source={require("../screenAssets/popcorn-collor.png")} style={styles.popcorn1} />
       <Image source={require("../screenAssets/popcorn-collor.png")} style={styles.popcorn2} />
       <Image source={require("../screenAssets/popcorn-collor.png")} style={styles.popcorn3} />
@@ -32,7 +33,6 @@ export default function Verify2FA() {
 
         <Box vw={0.88} padTop={height * 0.02}>
           <View style={styles.boxContent}>
-
             <Text style={[style.text, styles.instructionText]}>
               Insira o código de 5 dígitos que enviamos para o e-mail a******@email.com**.
             </Text>
@@ -57,7 +57,7 @@ export default function Verify2FA() {
   );
 }
 
-const styles = StyleSheet.create({
+const getStyles = (width: number, height: number) => StyleSheet.create({
   popcorn1: {
     position: "absolute",
     width: width * 0.1, 
