@@ -40,8 +40,6 @@ const BottomNavbar = () => {
     },
   ];
 
-
-
   return (
     <View style={navBarStyle.navbarWrapper}>
       <Image
