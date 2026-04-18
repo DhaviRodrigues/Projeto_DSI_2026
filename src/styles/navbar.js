@@ -17,7 +17,7 @@ export const navBarStyle = StyleSheet.create({
   navbarContainer: {
     width: '90%',
     height: height * 0.1, 
-    backgroundColor: COLORS.red,
+    backgroundColor: COLORS.primary,
     borderRadius: 32, 
     shadowColor: '#000',
     shadowOpacity: 0.50,
