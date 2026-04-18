@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-import { style } from '@/styles/style';
-
+import { style as cinemaStyle } from '@/styles/cinema';
 interface CinemaCardProps {
     nome: string;
     endereco: string;
@@ -17,12 +16,12 @@ function DynamicStars({ rating }: { rating: number }) {
     const fills = Array.from({ length: 5 }, (_, i) => Math.max(0, Math.min(1, rating - i)));
 
     return (
-        <View style={style.cinemaStarsWrapper}>
+        <View style={cinemaStyle.cinemaStarsWrapper}>
             {fills.map((fill, index) => (
-                <View key={index} style={style.cinemaSingleStarContainer}>
-                    <Text style={style.cinemaStarBackground}>★</Text>
-                    <View style={[style.cinemaStarOverlay, { width: `${fill * 100}%` }]}>
-                        <Text style={style.cinemaStarForeground}>★</Text>
+                <View key={index} style={cinemaStyle.cinemaSingleStarContainer}>
+                    <Text style={cinemaStyle.cinemaStarBackground}>★</Text>
+                    <View style={[cinemaStyle.cinemaStarOverlay, { width: `${fill * 100}%` }]}>
+                        <Text style={cinemaStyle.cinemaStarForeground}>★</Text>
                     </View>
                 </View>
             ))}
@@ -32,51 +31,51 @@ function DynamicStars({ rating }: { rating: number }) {
 
 const CinemaCard = ({ nome, endereco, isParceiro, avaliacao, distancia, imagem, filmes }: CinemaCardProps) => {
     return (
-        <View style={style.cinemaCardContainer}>
+        <View style={cinemaStyle.cinemaCardContainer}>
 
             {/* Lado Esquerdo: Informações do Cinema */}
-            <View style={style.cinemaDetailsContainer}>
+            <View style={cinemaStyle.cinemaDetailsContainer}>
                 <View>
-                    <View style={style.cinemaHeaderRow}>
-                        <Text style={style.cinemaNameText} numberOfLines={1}>{nome}</Text>
+                    <View style={cinemaStyle.cinemaHeaderRow}>
+                        <Text style={cinemaStyle.cinemaNameText} numberOfLines={1}>{nome}</Text>
                     </View>
-                    <View style={style.redDividerLine} />
-                    <Text style={style.cinemaAddressText} numberOfLines={1}>{endereco}</Text>
+                    <View style={cinemaStyle.redDividerLine} />
+                    <Text style={cinemaStyle.cinemaAddressText} numberOfLines={1}>{endereco}</Text>
 
-                    <Text style={style.cinemaDistanceText}>📍{distancia}</Text>
+                    <Text style={cinemaStyle.cinemaDistanceText}>📍{distancia}</Text>
                 </View>
 
-                <View style={style.cinemaStarsWrapper}>
+                <View style={cinemaStyle.cinemaStarsWrapper}>
                     <DynamicStars rating={avaliacao} />
                 </View>
                 {isParceiro && (
                     <Image
                         source={require('@/screenAssets/cinema-parceiro.svg')}
-                        style={style.partnerBadgeIcon}
+                        style={cinemaStyle.partnerBadgeIcon}
                     />
                 )}
 
                 {/* Filmes em Cartaz (Abaixo das informações) */}
-                <View style={style.moviesRowBottom}>
+                <View style={cinemaStyle.moviesRowBottom}>
                     {filmes.slice(0, 2).map((filme) => (
                         <Image
                             key={filme.id}
                             source={{ uri: filme.image }}
-                            style={style.miniPosterImage}
+                            style={cinemaStyle.miniPosterImage}
                         />
                     ))}
                 </View>
             </View>
 
             {/* Lado Direito: Botão Acima e Imagem Abaixo */}
-            <View style={style.cinemaRightActionContainer}>
+            <View style={cinemaStyle.cinemaRightActionContainer}>
                 {/* A imagem agora é o fundo do container da direita */}
-                <View style={style.imageContainerWithButton}>
-                    <Image source={{ uri: imagem }} style={style.cinemaMainImageRight} />
+                <View style={cinemaStyle.imageContainerWithButton}>
+                    <Image source={{ uri: imagem }} style={cinemaStyle.cinemaMainImageRight} />
 
                     {/* Botão sobrepondo a imagem */}
-                    <TouchableOpacity style={style.seeMoreBtnOverlay} activeOpacity={0.8}>
-                        <Text style={style.seeMoreBtnText}>Ver mais</Text>
+                    <TouchableOpacity style={cinemaStyle.seeMoreBtnOverlay} activeOpacity={0.8}>
+                        <Text style={cinemaStyle.seeMoreBtnText}>Ver mais</Text>
                     </TouchableOpacity>
                 </View>
             </View>
