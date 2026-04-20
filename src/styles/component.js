@@ -128,4 +128,32 @@ export const componentStyle = StyleSheet.create({
     elevation: 16,
     overflow: "visible",
   },
+  popupOverlay: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)"
+  },
+  popup: {
+    width: "84%",
+    padding: 24,
+    borderRadius: 20,
+    backgroundColor: COLORS.white,
+    borderColor: COLORS.red,
+    borderWidth: height * 0.007,
+    alignItems: "center",
+  },
+  popupText: {
+    color: COLORS.textMuted,
+    fontSize: height * 0.018,
+    fontFamily: "Poppins-SemiBold",
+    textAlign: "center",
+  },
+  exclamationIcon: {
+    width: height * 0.05,
+    height: height * 0.05,
+    marginBottom: height * 0.02,
+    alignItems: "center",
+  },
 });
+

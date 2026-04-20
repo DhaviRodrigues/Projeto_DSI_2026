@@ -4,16 +4,41 @@ import { ButtonY } from "@/components/ButtonY";
 import { Input } from "@/components/Input";
 import { Pencil } from "@/components/Pencil";
 import { ProfileIcon } from "@/components/ProfileIcon";
+import { ValidationPopup } from "@/components/ValidationPopup";
+import { logoStyle } from "@/styles/logo";
 import { miscStyle } from "@/styles/misc";
 import { textStyle } from "@/styles/text";
-import { logoStyle } from "@/styles/logo";
+import { validateRegister } from "@/validation/user_register";
 import { useRouter } from 'expo-router';
+import { useState } from 'react';
 import { Dimensions, Image, ScrollView, Text, View } from "react-native";
 
 const { height } = Dimensions.get('window');
 
 export default function Register(){
     const router = useRouter();
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [validationMessage, setValidationMessage] = useState("");
+    const [showValidationPopup, setShowValidationPopup] = useState(false);
+
+    const handleContinue = () => {
+        const result = validateRegister(name, email, password, confirmPassword);
+
+        if (!result.valid) {
+            setValidationMessage(result.error);
+            setShowValidationPopup(true);
+            return;
+        }
+
+        router.push('/verificacaoEmail');
+    };
+
+    function closeValidationPopup() {
+        setShowValidationPopup(false);
+    }
 
     return(
         <View style={miscStyle.background}>
@@ -27,17 +52,44 @@ export default function Register(){
                             <Pencil onPress={() => console.log("Editar foto")} />
                         </ProfileIcon>
                         <Text style={textStyle.text}>Insira suas informações pessoais</Text>
-                        <Input icon={require('@/screenAssets/Navbar/perfil-icon.svg')} text="Nome:" />
-                        <Input icon={require('@/screenAssets/icons/email-icon.png')} text="Email:" />
-                        <Input icon={require('@/screenAssets/icons/password-icon.png')} text="Senha:" secureTextEntry={true} />
-                        <Input icon={require('@/screenAssets/icons/password-icon.png')} text="Confirmar Senha:" secureTextEntry={true} />
+                        <Input
+                          icon={require('@/screenAssets/Navbar/perfil-icon.svg')}
+                          text="Nome:"
+                          value={name}
+                          onChangeText={setName}
+                        />
+                        <Input
+                          icon={require('@/screenAssets/icons/email-icon.png')}
+                          text="Email:"
+                          value={email}
+                          onChangeText={setEmail}
+                        />
+                        <Input
+                          icon={require('@/screenAssets/icons/password-icon.png')}
+                          text="Senha:"
+                          secureTextEntry={true}
+                          value={password}
+                          onChangeText={setPassword}
+                        />
+                        <Input
+                          icon={require('@/screenAssets/icons/password-icon.png')}
+                          text="Confirmar Senha:"
+                          secureTextEntry={true}
+                          value={confirmPassword}
+                          onChangeText={setConfirmPassword}
+                        />
                         <Text style={textStyle.message}>*A senha deve conter mais de 8 caracteres, letras maiúsculas e números</Text>
-                        <ButtonY title="Continuar" onPress={() => router.push('/verificacaoEmail')} />
+                        <ButtonY title="Continuar" onPress={handleContinue} />
                         <ButtonVoltar title="Voltar" onPress={() => router.push('/')} />
                     </View>
                 </Box>    
             </View>
-        </ScrollView>       
+        </ScrollView>
+            <ValidationPopup
+                visible={showValidationPopup}
+                message={validationMessage}
+                onClose={closeValidationPopup}
+            />
         </View>
     )
 }
