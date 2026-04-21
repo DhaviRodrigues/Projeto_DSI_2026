@@ -1,6 +1,7 @@
 import { buttonStyle } from "@/styles/button";
 import { Text, TouchableOpacity } from "react-native";
 
+// Tipagem das props. Deixamos quase tudo como opcional (?) para garantir flexibilidade. Assim a gente pode usar esse mesmo botão amarelo no app todo, sobrescrevendo altura, largura ou borda só quando o design de uma tela específica exigir.
 type ButtonProps = {
   title: string;
   h?: number;
@@ -14,10 +15,13 @@ type ButtonProps = {
 export function ButtonY({ title, h, w, textSize, align, borderRadius, onPress }: ButtonProps) {
   return (
     <TouchableOpacity 
+      // O style recebe um array pra gente conseguir mesclar as classes globais (buttonStyle.buttonY e button) com os estilos inline dinâmicos gerados pelas props. O justifyContent aqui espelha a prop align.
       style={[buttonStyle.buttonY, buttonStyle.button, { height: h, width: w, justifyContent: align, borderRadius: borderRadius }]} 
+      // Mantendo o activeOpacity em 0.7 pra dar um feedback de clique mais natural, padronizando com o comportamento do ButtonB.
       activeOpacity={0.7} 
       onPress={onPress}
     >
+      {/* Mesma lógica de array no Text pra permitir que a prop textSize mude o tamanho da fonte caso a tela precise de um texto de botão maior ou menor que o padrão */}
       <Text style={[buttonStyle.buttonText, buttonStyle.buttonYText, { fontSize: textSize }]}>{title}</Text>
     </TouchableOpacity>
   );

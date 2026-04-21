@@ -12,6 +12,7 @@ import Head from 'expo-router/head';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 
+// Trava a splash screen nativa para evitar flashes visuais antes das fontes estarem prontas.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
@@ -22,6 +23,7 @@ export default function RootLayout() {
     'Poppins-Light': Poppins_300Light,
   });
 
+  // Libera a renderização da tela assim que as dependências (fontes) terminarem de carregar.
   useEffect(() => {
     if (loaded || error) {
       SplashScreen.hideAsync();
@@ -37,6 +39,7 @@ export default function RootLayout() {
       <UserRegistrationProvider>
         <Head>
           <title>PopCorner</title>
+          {/* Importação e customização do CSS do Leaflet necessárias para o mapa renderizar corretamente na web. */}
           <link
             rel="stylesheet"
             href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
