@@ -52,7 +52,6 @@ export default function Register(){
 
     return(
         <View style={miscStyle.background}>
-            <ScrollView showsVerticalScrollIndicator={false} style={{ width: '100%' }}>
             <Image source={require('@/screenAssets/logo/full-logo.png')} style={logoStyle.logoS} height={height * 1} />
             <View style={miscStyle.center}> 
                 <Box vw={0.80} padTop={0}> 
@@ -94,7 +93,6 @@ export default function Register(){
                     </View>
                 </Box>    
             </View>
-        </ScrollView>
             <ValidationPopup
                 visible={showValidationPopup}
                 message={validationMessage}
