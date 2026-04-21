@@ -24,7 +24,6 @@ export default function Index(){
     const [isLoading, setIsLoading] = useState(false);
 
     async function handleLogin() {
-        // Validação básica
         const validation = validateLogin(email, password);
         if (!validation.valid) {
             setValidationMessage(validation.error);
@@ -36,7 +35,6 @@ export default function Index(){
         const result = await loginUser(email, password);
 
         if (result.valid) {
-            // Buscar dados do usuário do Firestore
             const userData = await fetchUserData();
             if (userData) {
                 setUser(userData);
