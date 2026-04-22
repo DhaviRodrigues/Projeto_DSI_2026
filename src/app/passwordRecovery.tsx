@@ -1,10 +1,8 @@
+import { miscStyle } from "@/styles/misc";
+import { textStyle } from "@/styles/text";
 import { useRouter } from "expo-router";
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from "react-native";
-import { miscStyle } from "@/styles/misc";
-import { textStyle} from "@/styles/text";
-import { logoStyle } from "@/styles/logo";
-import {componentStyle} from "@/styles/component";
 import { Box } from "../components/Box";
 import { ButtonVoltar } from "../components/ButtonVoltar";
 import { ButtonY } from "../components/ButtonY";
@@ -13,12 +11,15 @@ import CodeInput from "../components/CodeInput";
 export default function Verify2FA() {
   const router = useRouter();
   
+  // Optei por usar o useWindowDimensions no lugar do Dimensions.get('window') aqui porque esse hook re-renderiza a tela se o tamanho mudar (tipo se o usuário girar o celular de lado).
   const { width, height } = useWindowDimensions();
 
+  // Passo as dimensões como parâmetro pra função que cria o StyleSheet. Isso permite que eu faça cálculos de porcentagem no tamanho dos elementos baseado na tela atual.
   const styles = getStyles(width, height);
 
   return (
     <View style={miscStyle.background}>
+      {/* Essas imagens da pipoca tão com position "absolute" lá no estilo pra ficarem flutuando no fundo. O zIndex garante que elas fiquem na camada certa sem sobrepor o modal. */}
       <Image source={require("../screenAssets/popcorn-collor.png")} style={styles.popcorn1} />
       <Image source={require("../screenAssets/popcorn-collor.png")} style={styles.popcorn2} />
       <Image source={require("../screenAssets/popcorn-collor.png")} style={styles.popcorn3} />
@@ -32,10 +33,12 @@ export default function Verify2FA() {
 
         <Box vw={0.88} padTop={height * 0.02}>
           <View style={styles.boxContent}>
+            {/* O email mascarado tá hardcoded aqui. Quando a gente ligar com o fluxo de esqueci a senha, isso aqui vai precisar ler o email que o cara digitou na tela anterior via params do router ou de algum context. */}
             <Text style={[textStyle.text, styles.instructionText]}>
               Insira o código de 5 dígitos que enviamos para o e-mail a******@email.com**.
             </Text>
 
+            {/* A lógica chata de focar nos quadradinhos separados do PIN (os refs de cada input) tá toda isolada dentro desse componente pra deixar essa tela mais limpa. */}
             <CodeInput />
 
             <TouchableOpacity style={styles.resendButton}>
@@ -44,6 +47,7 @@ export default function Verify2FA() {
               </Text>
             </TouchableOpacity>
 
+            {/* Por enquanto tá dando bypass e mandando direto pra home, mas aqui vai entrar a lógica assíncrona pra bater o PIN na API e pegar o token de recuperação. */}
             <ButtonY title="Confirmar" onPress={() => router.push("/home")} />
           </View>
         </Box>
@@ -56,6 +60,7 @@ export default function Verify2FA() {
   );
 }
 
+// Em vez de um StyleSheet.create padrão, fiz uma factory function que recebe width e height pra gerar os estilos dinamicamente.
 const getStyles = (width: number, height: number) => StyleSheet.create({
   popcorn1: {
     position: "absolute",
@@ -85,6 +90,7 @@ const getStyles = (width: number, height: number) => StyleSheet.create({
     width: width * 0.45, 
     height: width * 0.45,
     marginTop: height * 0.05,
+    // O contain garante que o escudo não fique achatado se a proporção da tela for muito diferente (ex: tablet vs celular)
     resizeMode: "contain",
   },
 
@@ -110,6 +116,7 @@ const getStyles = (width: number, height: number) => StyleSheet.create({
     textDecorationLine: "underline",
   },
   backButtonContainer: {
+    // Margem negativa puxando o botão de voltar pra cima um pouco pra ele encaixar melhor no final da Box branca
     marginTop: -30, 
     width: "100%", 
     alignItems: "center",

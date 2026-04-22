@@ -1,6 +1,7 @@
 import { Text, TouchableOpacity } from "react-native";
 import { buttonStyle } from "@/styles/button";
 
+// Tipagem simples. O onPress tá como opcional (?) pra gente poder importar o botão e montar o layout das telas mesmo antes de ter a lógica de navegação do router pronta, sem o TypeScript ficar reclamando.
 type ButtonProps = {
   title: string;
   onPress?: () => void;
@@ -9,7 +10,9 @@ type ButtonProps = {
 export function ButtonVoltar({ title, onPress }: ButtonProps) {
   return (
     <TouchableOpacity 
+      // Usando array no style pra fazer composição. O buttonStyle.button deve ter as regras globais (padding, alinhamento) e o buttonVoltar as específicas (fundo transparente, texto colorido, etc).
       style={[buttonStyle.button, buttonStyle.buttonVoltar]} 
+      // O activeOpacity 0.7 deixa o feedback tátil do clique mais suave, parecido com app nativo mesmo, em vez daquele piscar agressivo do padrão do React Native.
       activeOpacity={0.7} 
       onPress={onPress}
     >

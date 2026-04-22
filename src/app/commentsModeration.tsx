@@ -12,8 +12,11 @@ import {
 } from 'react-native';
 import { COLORS } from '../constants/colors';
 import { style as S } from '../styles/misc';
+
+// Pegando a altura da tela para deixar as fontes e espaçamentos responsivos depois no StyleSheet
 const { height } = Dimensions.get('window');
 
+// Tipagens literais para amarrar os valores possíveis e evitar erro de digitação no estado ou nas props
 type FilterTab = 'Pendentes' | 'Aprovados' | 'Arquivados' | 'Feitos';
 type CommentStatus = 'Pendente' | 'Aprovado' | 'Recusado';
 
@@ -28,6 +31,7 @@ interface Comment {
   status: CommentStatus;
 }
 
+// Dados mockados provisórios para montar a interface enquanto a API do BCB inteligencia não está pronta pra isso
 const MOCK_COMMENTS: Comment[] = [
   {
     id: '1',
@@ -64,6 +68,7 @@ const MOCK_COMMENTS: Comment[] = [
 function StarRating({ rating, max = 5 }: { rating: number; max?: number }) {
   return (
     <View style={local.starsRow}>
+      {/* Crio um array do tamanho do max (5) e itero. Se a posição atual for menor que o rating, pinto a estrela */}
       {Array.from({ length: max }).map((_, i) => (
         <Text key={i} style={[local.star, i < rating ? local.starFilled : local.starEmpty]}>
           ★
@@ -74,6 +79,7 @@ function StarRating({ rating, max = 5 }: { rating: number; max?: number }) {
 }
 
 function StatusBadge({ status }: { status: CommentStatus }) {
+  // Uso esse dicionário pra mapear o status direto pra cor, bem mais limpo que fazer um monte de if/else ou switch
   const config = {
     Pendente: { bg: COLORS.orange },
     Aprovado: { bg: COLORS.green },
@@ -135,6 +141,7 @@ function FilterTabs({ active, onChange }: { active: FilterTab; onChange: (t: Fil
   return (
     <ScrollView horizontal showsHorizontalScrollIndicator={false} style={local.tabsScroll}>
       <View style={local.tabsRow}>
+        {/* Renderiza as abas de filtro. O estilo de ativo só aplica se a aba renderizada for igual ao state active que vem lá da Screen principal */}
         {tabs.map((tab) => (
           <TouchableOpacity
             key={tab}
@@ -151,6 +158,7 @@ function FilterTabs({ active, onChange }: { active: FilterTab; onChange: (t: Fil
 }
 
 function SearchBar() {
+  // Estado isolado pra barra de pesquisa. Se precisar buscar na API, teria que jogar esse estado lá pro componente pai.
   const [query, setQuery] = useState('');
   return (
 
@@ -181,6 +189,7 @@ function Header({ onBack }: { onBack?: () => void }) {
   );
 }
 
+// Configuração estática dos itens do menu inferior
 const NAV_ITEMS = [
   { icon: '🏠', label: 'Início' },
   { icon: '🎬', label: 'Cinemas' },
@@ -198,6 +207,7 @@ function BottomNav({ active = 0 }: { active?: number }) {
           {NAV_ITEMS.map((item, i) => (
             <TouchableOpacity key={item.label} style={S.tab}>
           
+              {/* O estilo de ativo é passado verificando o índice. O padão é 0 (Início) */}
               <View style={[S.tabContent, i === active && S.activeTabContent]}>
                 <Text style={local.navEmoji}>{item.icon}</Text>
               </View>
@@ -225,7 +235,9 @@ function SelectAllBar() {
   );
 }
 
+// Tela principal que junta tudo
 export default function CommentModerationScreen() {
+  // Centraliza o estado da aba aqui porque, na real, a gente vai precisar usar isso pra filtrar o MOCK_COMMENTS antes do map. Mas por enquanto só tá mudando o visual.
   const [activeTab, setActiveTab] = useState<FilterTab>('Pendentes');
 
   return (
@@ -242,8 +254,10 @@ export default function CommentModerationScreen() {
       
           <Text style={[S.text, local.pageTitle]}>Gerenciamento de Comentários</Text>
           <SearchBar />
+          {/* Passa o state e o setState pra aba de filtros conseguir se atualizar */}
           <FilterTabs active={activeTab} onChange={setActiveTab} />
           <SelectAllBar />
+          {/* Aqui estamos renderizando a lista inteira do mock. Num cenário real tem que ser MOCK_COMMENTS.filter(...) baseado no activeTab */}
           {MOCK_COMMENTS.map((comment) => (
             <CommentCard key={comment.id} comment={comment} />
           ))}
