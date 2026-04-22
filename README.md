@@ -1,56 +1,78 @@
-# Welcome to your Expo app 👋
+# 🍿 PopCorner
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+> **Transformando interações digitais em cultura presencial.**
 
-## Get started
+O **PopCorner** é uma plataforma mobile desenvolvida para revitalizar o circuito de cinemas independentes e de rua. Através de uma interface fluida e uma economia virtual gamificada, o aplicativo incentiva o público a explorar conteúdos nichados e recompensa o engajamento com benefícios reais em estabelecimentos físicos.
 
-1. Install dependencies
+---
 
-   ```bash
-   npm install
-   ```
+## 🎮 Gamificação e Economia: As Pipokas
 
-2. Start the app
+O diferencial do PopCorner é o seu sistema de recompensas, focado em converter o tempo de uso em incentivo cultural:
 
-   ```bash
-   npx expo start
-   ```
+* **🪙 Moedas Virtuais (Pipokas):** A moeda oficial do app. Os usuários acumulam *Pipokas* ao completar o onboarding, avaliar filmes, participar de desafios e interagir com a comunidade.
+* **🎟️ Troca por Cupons:** Na nossa **Loja**, as *Pipokas* acumuladas podem ser trocadas por cupons de desconto exclusivos 
 
-In the output, you'll find options to open the app in a
+---
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## ✨ Principais Funcionalidades
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- **👛 Carteira de Recompensas:** Espaço para gerenciar seu saldo de *Pipokas* e visualizar cupons ativos.
+- **📍 Mapa de Cinemas:** Localização de cinemas parceiros que aceitam os cupons do app.
+- **📱 Experiência Nativa:** Desenvolvido com Expo, garantindo alta performance tanto em Android quanto em iOS.
 
-## Get a fresh project
+---
 
-When you're ready, run:
+## 🛠️ Tecnologias Utilizadas
 
+- **Frontend:** [React Native](https://reactnative.dev/)
+- **Framework:** [Expo](https://expo.dev/) (SDK 51+)
+- **Navegação:** [Expo Router](https://docs.expo.dev/router/introduction/) (File-based routing)
+
+---
+
+## 🚀 Como Rodar o Projeto Localmente
+
+### 1. Pré-requisitos
+Certifique-se de ter o **Node.js** e o **npm** instalados.
+
+### 2. Instalação
+Clone o repositório e instale as dependências:
 ```bash
-npm run reset-project
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### 3. Iniciar o App
+Inicie o servidor de desenvolvimento do Expo:
+```bash
+npx expo start
+```
 
-### Other setup steps
+* Abra o **Expo Go** no seu celular e escaneie o QR Code.
+* Ou pressione `a` para Android ou `i` para iOS (necessário emulador configurado).
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+---
 
-## Learn more
+## 📂 Estrutura de Pastas
 
-To learn more about developing your project with Expo, look at the following resources:
+```text
+📦 popcorner
+ ┣ 📂 app/             # Rotas e telas (Home, Filmes, Cinemas)
+ ┣ 📂 assets/          # Ícones, imagens e a identidade visual (Pipokas)
+ ┣ 📂 components/      # Componentes de UI (Cards, Botões de Resgate, Modais)
+ ┣ 📂 constants/       # Configurações de cores e estilos
+ ┣ 📜 app.json         # Configurações do Expo
+ ┗ 📜 package.json     # Scripts e dependências
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+---
 
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## 👨‍💻 Desenvolvedores  
+- **Carlos Batista:** aluno do 3º período de BSI - UFRPE
+- **Dhavi Rodrigues:** aluno do 3º período de BSI - UFRPE
+- **Edmir Nicácio:** aluno do 3º período de BSI - UFRPE
+- **João Guilherme:** aluno do 3º período de BSI - UFRPE
+- **Lucas Santos:** aluno do 3º período de BSI - UFRPE
+- **Nícolas Gonzaga:** aluno do 3º período de BSI - UFRPE
+---
+> *Este projeto faz parte de uma iniciativa para fortalecer o cinema independente através da tecnologia.*
