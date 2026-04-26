@@ -13,7 +13,7 @@ type ButtonProps = {
 };
 
 export function ButtonB({ title, h, w, textSize, align, borderRadius, onPress }: ButtonProps) {
-  const { height } = useWindowDimensions();
+  const { height, width: screenWidth } = useWindowDimensions();
 
   const dynamicHeight = h || height * 0.07;
   const dynamicRadius = borderRadius || height * 0.022;
@@ -23,7 +23,20 @@ export function ButtonB({ title, h, w, textSize, align, borderRadius, onPress }:
   return (
     // Passando o style como um array pra mesclar as classes globais (cor de fundo, padding base) com os overrides que vêm das props. O justifyContent aqui tá mapeado pro 'align' pra facilitar centralizar o conteúdo quando precisar.
     <TouchableOpacity 
-      style={[buttonStyle.buttonB, buttonStyle.button, { height: dynamicHeight, width: w || "48%", justifyContent: align || "center", borderRadius: dynamicRadius, marginTop: dynamicMarginVertical, marginBottom: dynamicMarginVertical, shadowRadius: dynamicShadowRadius }]} 
+      style={[buttonStyle.buttonB, buttonStyle.button, { 
+        height: dynamicHeight, 
+        width: w || screenWidth * 0.48, 
+        justifyContent: align || "center", 
+        borderRadius: dynamicRadius, 
+        marginTop: dynamicMarginVertical, 
+        marginBottom: dynamicMarginVertical,
+      
+        elevation: 5,
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 15 },
+        shadowOpacity: 0.25,
+        shadowRadius: dynamicShadowRadius
+      }]} 
       // O activeOpacity 0.7 dá um feedback visual mais premium no clique, tirando aquele piscar quase transparente agressivo que é o padrão do React Native.
       activeOpacity={0.7} 
       onPress={onPress}

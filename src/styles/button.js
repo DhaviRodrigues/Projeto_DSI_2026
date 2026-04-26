@@ -6,11 +6,6 @@ export const buttonStyle = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     alignSelf: "center",
-    elevation: 5,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 15 },
-    shadowOpacity: 0.25,
-    width: "48%", 
   },
   buttonText: {
     fontFamily: "Poppins-SemiBold",
@@ -49,15 +44,15 @@ export const buttonStyle = StyleSheet.create({
     borderRadius: 50,
   },
   logoutButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
     backgroundColor: COLORS.gold,
-    alignSelf: 'center',
-    width: '40%', 
+    alignSelf: "center",
+    width: "40%",
   },
   logoutText: {
     color: COLORS.black,
-    fontFamily: 'Poppins-Semibold',
+    fontFamily: "Poppins-Semibold",
   },
 });

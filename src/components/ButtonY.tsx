@@ -13,7 +13,7 @@ type ButtonProps = {
 };
 
 export function ButtonY({ title, h, w, textSize, align, borderRadius, onPress }: ButtonProps) {
-  const { height } = useWindowDimensions();
+  const { height, width: screenWidth } = useWindowDimensions();
 
   const dynamicHeight = h || height * 0.07;
   const dynamicRadius = borderRadius || height * 0.022;
@@ -24,7 +24,20 @@ export function ButtonY({ title, h, w, textSize, align, borderRadius, onPress }:
   return (
     <TouchableOpacity 
       // O style recebe um array pra gente conseguir mesclar as classes globais (buttonStyle.buttonY e button) com os estilos inline dinâmicos gerados pelas props. O justifyContent aqui espelha a prop align.
-      style={[buttonStyle.buttonY, buttonStyle.button, { height: dynamicHeight, width: w || "48%", justifyContent: align || "center", borderRadius: dynamicRadius, marginTop: dynamicMarginVertical, marginBottom: dynamicMarginVertical, shadowRadius: dynamicShadowRadius }]} 
+      style={[buttonStyle.buttonY, buttonStyle.button, {
+        height: dynamicHeight, 
+        width: w || screenWidth * 0.48, 
+        justifyContent: align || "center", 
+        borderRadius: dynamicRadius, 
+        marginTop: dynamicMarginVertical, 
+        marginBottom: dynamicMarginVertical,
+      
+        elevation: 5,
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 15 },
+        shadowOpacity: 0.25,
+        shadowRadius: dynamicShadowRadius
+      }]} 
       // Mantendo o activeOpacity em 0.7 pra dar um feedback de clique mais natural, padronizando com o comportamento do ButtonB.
       activeOpacity={0.7} 
       onPress={onPress}
