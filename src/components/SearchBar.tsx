@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, TextInput, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native';
 import { COLORS } from '@/constants/colors';
+import { searchBarStyles as styles } from '@/styles/searchbar';
 
 const { height } = Dimensions.get('window');
 
@@ -61,59 +62,3 @@ export default function SearchBar({
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    width: "105%", 
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginVertical: height * 0.015,
-    paddingHorizontal: "5%", 
-    left: "-4%", 
-  },
-  inputWrapper: {
-    flex: 1, 
-    flexDirection: "row", 
-    alignItems: "center",
-    backgroundColor: COLORS.white,
-    borderRadius: 50, 
-    borderWidth: 3, 
-    borderColor: COLORS.red,
-    paddingHorizontal: 15,
-    height: height * 0.06,
-    marginRight: 12, 
-  },
-  filterTrigger: {
-    width: height * 0.06,  
-    height: height * 0.06, 
-    borderRadius: (height * 0.06) / 2, 
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: COLORS.white,
-    borderWidth: 3, 
-    borderColor: COLORS.red, 
-  },
-  filterTriggerActive: {
-    backgroundColor: COLORS.primary,
-    borderColor: COLORS.gold,
-   
-  },
-  searchIcon: {
-    width: 20,
-    height: 20,
-    tintColor: '#A0A0A0', 
-    marginRight: 10,
-  },
-  filterIcon: {
-    width: 24,
-    height: 24,
-    
-  },
-  input: {
-    flex: 1, 
-    fontSize: height * 0.018,
-    color: '#333',
-    fontWeight: '600',
-  }
-});

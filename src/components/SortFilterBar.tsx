@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView, TouchableOpacity, Text, StyleSheet, View, Dimensions } from 'react-native';
-import {COLORS} from '@/constants/colors'; 
+import { sortFilterStyles as styles } from '@/styles/searchbar';
 
 const { height } = Dimensions.get('window');
 
@@ -53,48 +53,3 @@ export default function SortFilterBar({
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    bottom: height * 0.02, 
-    alignItems: 'flex-end', 
-  },
-  scrollContent: {
-    justifyContent: 'flex-end',
-    flexGrow: 1, 
-    paddingHorizontal: 8,
-  },
-  filterBtn: { 
-    paddingVertical: height * 0.008, 
-    paddingHorizontal: 16, 
-    backgroundColor: "transparent",
-    borderRadius: 20, 
-    marginRight: 8,
-    borderWidth: 3,
-    borderColor: COLORS.gold,
-  },
-  activeBtn: { 
-    backgroundColor: COLORS.gold
-  },
-  filterText: {
-    color: COLORS.gold,
-    fontSize: height * 0.015,
-    fontWeight: 'bold',
-  },
-  activeText: {
-    color: COLORS.primaryDark,
-  },
-  sortDirectionBtn: { 
-    paddingVertical: height * 0.008, 
-    paddingHorizontal: 12,
-    borderRadius: 20,
-    borderWidth: 3,
-    borderColor: COLORS.gold ,
-    backgroundColor: "transparent",
-  },
-  sortDirectionText: {
-    color: COLORS.gold || '#FFD700',
-    fontSize: height * 0.015,
-    fontWeight: 'bold',
-  }
-});

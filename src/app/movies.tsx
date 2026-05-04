@@ -5,8 +5,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { MOVIES, Movie } from '@/data/mockFilmes';
 import BottomNavbar from '@/components/Navbar';
 import { ButtonY } from '@/components/ButtonY';
-
-// Importando os novos componentes de filtro
 import SearchBar from '@/components/SearchBar';
 import SortFilterBar from '@/components/SortFilterBar';
 import GenreFilter from '@/components/GenreFilter';
@@ -40,16 +38,13 @@ function DynamicStars({ rating }: { rating: number }) {
 export default function MoviesScreen() {
   const router = useRouter();
 
-  // 1. ESTADOS DA PESQUISA E FILTROS
   const [searchText, setSearchText] = useState('');
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
   const [sortType, setSortType] = useState('alphabetical');
   const [sortAscending, setSortAscending] = useState(true);
   
-  // ---> NOVO ESTADO: Controla a visibilidade dos filtros <---
   const [showFilters, setShowFilters] = useState(false);
 
-  // Extrai dinamicamente todos os gêneros (tags) únicos do seu mock de filmes
   const availableGenres = useMemo(() => {
     const allTags = MOVIES.flatMap(movie => movie.tags);
     return Array.from(new Set(allTags));
@@ -60,25 +55,22 @@ export default function MoviesScreen() {
     { label: 'Nota', value: 'rating' },
   ];
 
-  // 2. LÓGICA DE FILTRAGEM (useMemo para performance)
   const filteredAndSortedMovies = useMemo(() => {
     let result = MOVIES;
 
-    // Filtro de Texto
     if (searchText) {
       result = result.filter(m => 
         m.title.toLowerCase().includes(searchText.toLowerCase())
       );
     }
 
-    // Filtro de Gêneros
+
     if (selectedGenres.length > 0) {
       result = result.filter(m => 
         m.tags.some(tag => selectedGenres.includes(tag))
       );
     }
 
-    // Ordenação
     result = [...result].sort((a, b) => {
       let comp = 0;
       if (sortType === 'alphabetical') {
@@ -92,7 +84,7 @@ export default function MoviesScreen() {
     return result;
   }, [searchText, selectedGenres, sortType, sortAscending]);
 
-  // Função para marcar/desmarcar um gênero
+
   const toggleGenre = (genre: string) => {
     setSelectedGenres(prev => 
       prev.includes(genre) ? prev.filter(g => g !== genre) : [...prev, genre]
@@ -143,7 +135,6 @@ export default function MoviesScreen() {
              value={searchText} 
              onChangeText={setSearchText} 
              placeholder="Buscar um filme" 
-             // ---> NOVAS PROPRIEDADES DA BARRA DE PESQUISA <---
              onToggleFilters={() => setShowFilters(!showFilters)}
              filtersVisible={showFilters}
            />

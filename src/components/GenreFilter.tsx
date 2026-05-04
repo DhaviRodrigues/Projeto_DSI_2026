@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollView, TouchableOpacity, Text, StyleSheet, View, Dimensions } from 'react-native';
 import {COLORS} from '@/constants/colors'; 
+import { genreFilterStyles as styles } from '@/styles/searchbar';
 
 const { height } = Dimensions.get('window');
 
@@ -32,34 +33,3 @@ export default function GenreFilter({ availableGenres, selectedGenres, onToggleG
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { 
-    marginBottom: height * 0.010,
-    bottom: height * 0.01,
-  },
-  scrollContent: {
-    paddingHorizontal: "3%",
-  },
-  genreBtn: { 
-    paddingVertical: height * 0.006, 
-    paddingHorizontal: 14, 
-    borderWidth: 3, 
-    borderColor: COLORS.gold,
-    borderRadius: 20, 
-    marginRight: 8,
-    backgroundColor: COLORS.primaryDark
-  },
-  activeGenreBtn: { 
-    backgroundColor: COLORS.gold 
-  },
-  genreText: {
-    color: COLORS.gold ,
-    fontSize: height * 0.013,
-    fontWeight: 'bold',
-  },
-  activeGenreText: {
-    color: COLORS.primaryDark,
-    fontWeight: 'bold',
-  }
-});
